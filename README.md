@@ -2,15 +2,23 @@
 
 Code to help with interactions with the Databrary API.
 
-## Generate an NIH enrollment table.
-
-0. Source the helper functions:
+## Install the `databraryr` package
 
 ```
-purrr::walk(list.files("R", "\\.R$", full.names = TRUE), source)
+install.packages("databraryr")
 ```
 
-1. Log-in to Databrary:
+This will also request you to install the package dependencies.
+
+## Generate an NIH enrollment table
+
+1. Source the helper functions:
+
+```
+purrr::map(list.files("R", "\\.R$", full.names = TRUE), source)
+```
+
+3. Log-in to Databrary:
 
 ```
 # Make a default httr2 request
@@ -21,11 +29,11 @@ drq <- databraryr::make_default_request()
 databraryr::login_db(email = YOUR_EMAIL, store = TRUE, rq = drq)
 ```
 
-2. Choose the Databrary volume IDs you want to summarize.
+3. Choose the Databrary volume IDs you want to summarize.
 
-3. Choose the date range (start_date and end_date) for the sessions you want to include.
+4. Choose the date range (start_date and end_date) for the sessions you want to include.
 
-4. Generate the enrollment table:
+5. Generate the enrollment table:
 
 ```
 make_enrollment_table <- function(vol_ids = c(1, 2, 3),
